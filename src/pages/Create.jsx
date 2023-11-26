@@ -7,7 +7,7 @@ import { nanoid } from "nanoid";
 import writeData from "../firebase/writeData";
 import { useEffect } from "react";
 import readData from "../firebase/readData";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import deleteData from "../firebase/deleteData";
 
@@ -70,9 +70,9 @@ const Create = () => {
     <div className="Create">
       <div className="topBar">
         <div>
-          <a href="/">
+          <Link to="/">
             <ChevronLeftCircle size={28} />
-          </a>
+          </Link>
         </div>
         <h1>Create Records</h1>
       </div>

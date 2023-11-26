@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./View.css";
 import { ChevronLeftCircle } from "lucide-react";
 import listData from "../firebase/listData";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const View = () => {
   const navigate = useNavigate();
@@ -29,9 +29,9 @@ const View = () => {
     <div className="View">
       <div className="topBar">
         <div>
-          <a href="/">
+          <Link to="/">
             <ChevronLeftCircle size={28} />
-          </a>
+          </Link>
         </div>
         <h1>View Records</h1>
       </div>

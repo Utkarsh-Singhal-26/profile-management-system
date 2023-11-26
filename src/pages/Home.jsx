@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Count from "../firebase/Count";
+import {Link} from 'react-router-dom'
 
 const Home = () => {
   const [size, setSize] = useState(0);
@@ -22,11 +23,11 @@ const Home = () => {
       </div>
       <div className="buttons">
         <button className="hover">
-          <a href="/create">Create Record</a>
+          <Link to="/create">Create Record</Link>
         </button>
         {size !== 0 ? (
           <button className="hover">
-            <a href="/view">View Records</a>
+            <Link to="/view">View Records</Link>
           </button>
         ) : (
           <button disabled>View Records</button>
