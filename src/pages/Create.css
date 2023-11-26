@@ -1,0 +1,106 @@
+.Create {
+  width: 800px;
+  height: 500px;
+  background-color: #efffff;
+  border-radius: 20px;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topBar {
+  width: 90%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: auto auto auto;
+}
+
+.top {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.left {
+  width: 60%;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  row-gap: 8px;
+}
+
+.left input {
+  padding: 8px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.right {
+  width: 30%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 10px;
+  gap: 20px;
+  color: #b1b1b1;
+  border: 3px solid #ccc;
+}
+
+.img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.img img {
+  width: 150px;
+  height: auto;
+  object-fit: cover;
+}
+
+.file-input {
+  width: 100%;
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  color: #626262;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.file {
+  display: none;
+}
+
+.Qualification ul {
+  list-style: none;
+}
+
+ul > li {
+  display: grid;
+  grid-template-columns: 160px auto;
+  align-items: center;
+  gap: 12px;
+}
+
+ul > li:not(MinusCircle) {
+  font-size: 14px;
+}
+
+.icon {
+  margin-top: 8px;
+}
+
+.bottom {
+  display: flex;
+  gap: 20px;
+}
