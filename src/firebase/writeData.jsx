@@ -1,7 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "./firebase";
-import { useNavigate } from "react-router-dom";
 
 async function writeStorage(id, image, resume) {
   try {
@@ -16,11 +15,11 @@ async function writeStorage(id, image, resume) {
     return [imageURL, resumeURL];
   } catch (error) {
     console.log("error");
+    throw error
   }
 }
 
 async function writeData(id, data, image, resume) {
-  const navigate = useNavigate();
   try {
     const [imageURL, resumeURL] = await writeStorage(id, image, resume);
     await setDoc(doc(db, "records", id), {
@@ -29,7 +28,7 @@ async function writeData(id, data, image, resume) {
       resume: resumeURL,
     });
 
-    navigate("/");
+    window.location.href = "/";
   } catch (error) {
     console.error("Error Adding : ", error);
   }

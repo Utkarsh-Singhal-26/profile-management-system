@@ -37,6 +37,7 @@ const Image = ({ image, setImage }) => {
         style={{ display: "none" }}
         onChange={handleFileChange}
         ref={fileInputRef}
+        required
       />
     </div>
   );

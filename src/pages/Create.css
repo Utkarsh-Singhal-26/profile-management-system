@@ -1,9 +1,9 @@
 .Create {
   width: 800px;
-  height: 500px;
+  height: auto;
   background-color: #efffff;
   border-radius: 20px;
-  padding: 60px 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,4 +103,35 @@ ul > li:not(MinusCircle) {
 .bottom {
   display: flex;
   gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 450px) {
+  .Create {
+    width: 360px;
+    height: auto;
+  }
+
+  .topBar {
+    grid-template-columns: auto auto;
+  }
+
+  .top {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .left {
+    grid-template-columns: 1fr;
+  }
+
+  .icon {
+    margin-top: 0;
+  }
 }

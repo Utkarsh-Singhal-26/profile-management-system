@@ -20,6 +20,8 @@
   padding: 8px;
   text-align: center;
   width: 40px;
+  border: 1px solid #000;
+  border-radius: 4px;
 }
 
 .buttons {
@@ -28,4 +30,32 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+}
+
+@media screen and (max-width: 450px) {
+  .Home {
+    width: 360px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .info > input {
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 4px;
+  }
+
+  .buttons a {
+    font-size: 24px;
+  }
+
+  button:disabled {
+    font-size: 24px;
+  }
 }

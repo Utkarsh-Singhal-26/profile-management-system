@@ -7,13 +7,12 @@ import { nanoid } from "nanoid";
 import writeData from "../firebase/writeData";
 import { useEffect } from "react";
 import readData from "../firebase/readData";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import deleteData from "../firebase/deleteData";
 
 const Create = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const nanoID = nanoid();
 
   const [data, setData] = useState({
@@ -41,7 +40,7 @@ const Create = () => {
           setImage(record.image || "./upload.png");
           setResume(record.resume || null);
         } else {
-          navigate("/");
+          window.location.href = "/";
         }
       } catch (error) {
         console.error("Error fetching record:", error);
@@ -86,6 +85,7 @@ const Create = () => {
             autoComplete="new-password"
             value={data.name}
             onChange={handleChange}
+            required
           />
 
           <label htmlFor="contact">Contact : </label>
@@ -96,6 +96,7 @@ const Create = () => {
             autoComplete="new-password"
             value={data.contact !== 0 ? data.contact : ""}
             onChange={(e) => handleChange(e, true)}
+            required
           />
 
           <label htmlFor="email">Email : </label>
@@ -106,6 +107,7 @@ const Create = () => {
             autoComplete="new-password"
             value={data.email}
             onChange={handleChange}
+            required
           />
 
           <label htmlFor="address">Address : </label>
@@ -116,6 +118,7 @@ const Create = () => {
             autoComplete="new-password"
             value={data.address}
             onChange={handleChange}
+            required
           />
 
           <label htmlFor="qualification">Qualification : </label>
@@ -133,6 +136,7 @@ const Create = () => {
               accept="application/pdf"
               className="file"
               onChange={handleFileChange}
+              required
             />
           </div>
         </div>
@@ -151,7 +155,10 @@ const Create = () => {
         >
           Save Record
         </button>
-        <button className="hover" onClick={() => deleteData(id || nanoID, true)}>
+        <button
+          className="hover"
+          onClick={() => deleteData(id || nanoID, true)}
+        >
           Delete Record
         </button>
       </div>

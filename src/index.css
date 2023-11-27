@@ -13,6 +13,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.4s ease-in-out;
 }
 
 button {
@@ -21,8 +22,6 @@ button {
   border: 2px solid #496f82;
   background-color: transparent;
   font-size: 16px;
-  text-decoration: none;
-  color: #000;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -40,4 +39,14 @@ button:disabled {
 button:disabled:hover {
   background-color: #efffff;
   color: #b0bbd9;
+}
+
+button > a {
+  text-decoration: none;
+  color: #496f82;
+  transition: all 0.2s ease;
+}
+
+button.hover:hover > a {
+  color: #efffff;
 }

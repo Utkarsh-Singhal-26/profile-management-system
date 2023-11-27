@@ -7,11 +7,15 @@ import { Link, useNavigate } from "react-router-dom";
 const View = () => {
   const navigate = useNavigate();
   const [records, setRecords] = useState([]);
+  const [redirected, setRedirected] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const recordsElements = await listData({ onCreateClick: handleClick, navigate });
+        const recordsElements = await listData({
+          onCreateClick: handleClick,
+          navigate,
+        });
         setRecords(recordsElements);
       } catch (error) {
         console.error("Error fetching records:", error);
@@ -19,7 +23,14 @@ const View = () => {
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
+
+  useEffect(() => {
+    if (records.length === 0 && !redirected) {
+      navigate("/");
+      setRedirected(true);
+    }
+  }, [navigate, records, redirected]);
 
   const handleClick = (id) => {
     navigate(`/create/${id}`);
