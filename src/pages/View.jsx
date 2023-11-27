@@ -6,8 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const View = () => {
   const navigate = useNavigate();
-  const [records, setRecords] = useState([]);
-  const [redirected, setRedirected] = useState(false);
+  const [records, setRecords] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,11 +25,12 @@ const View = () => {
   }, [navigate]);
 
   useEffect(() => {
-    if (records.length === 0 && !redirected) {
+    if (!records) return;
+    if (records.length === 0) {
       navigate("/");
       setRedirected(true);
     }
-  }, [navigate, records, redirected]);
+  }, [navigate, records]);
 
   const handleClick = (id) => {
     navigate(`/create/${id}`);
@@ -53,6 +53,7 @@ const View = () => {
             <th>Contact</th>
             <th>Email</th>
             <th>Image</th>
+            <th>Options</th>
           </tr>
         </thead>
 
