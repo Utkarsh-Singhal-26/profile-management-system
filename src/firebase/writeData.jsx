@@ -15,11 +15,14 @@ async function writeStorage(id, image, resume) {
     return [imageURL, resumeURL];
   } catch (error) {
     console.log("error");
-    throw error
+    throw error;
   }
 }
 
 async function writeData(id, data, image, resume) {
+  if (!id || !data || !image || !resume) {
+    return alert("Fill All Fields.");
+  }
   try {
     const [imageURL, resumeURL] = await writeStorage(id, image, resume);
     await setDoc(doc(db, "records", id), {
