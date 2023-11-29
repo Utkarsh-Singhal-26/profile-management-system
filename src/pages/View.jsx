@@ -13,7 +13,6 @@ const View = () => {
       try {
         const recordsElements = await listData({
           onCreateClick: handleClick,
-          navigate,
         });
         setRecords(recordsElements);
       } catch (error) {

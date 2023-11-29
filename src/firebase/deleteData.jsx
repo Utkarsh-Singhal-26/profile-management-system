@@ -2,8 +2,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { db, storage } from "./firebase";
 import { deleteObject, ref } from "firebase/storage";
 
-async function deleteData(id, isReload = false) {
-
+async function deleteData(id) {
   const deleteImgRef = ref(storage, `images/${id}`);
   const deleteResumeRef = ref(storage, `resume/${id}`);
 
@@ -11,11 +10,7 @@ async function deleteData(id, isReload = false) {
     if (deleteObject(deleteImgRef) && deleteObject(deleteResumeRef)) {
       await deleteDoc(doc(db, "records", id));
 
-      if (isReload) {
-        window.location.href = '/';
-      } else {
-        window.location.reload();
-      }
+      window.location.reload();
     }
   } catch (error) {
     console.error("Error Deleting: ", error);
