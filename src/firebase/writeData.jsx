@@ -1,6 +1,8 @@
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "./firebase";
+import { toast } from "react-toastify";
+import { ShieldAlert, CheckCheck } from "lucide-react";
 
 async function writeStorage(id, image, resume) {
   try {
@@ -14,26 +16,51 @@ async function writeStorage(id, image, resume) {
 
     return [imageURL, resumeURL];
   } catch (error) {
-    console.log("error");
     throw error;
   }
 }
 
 async function writeData(id, data, image, resume) {
   if (!id || !data || !image || !resume) {
-    return alert("Fill All Fields.");
+    toast.error("Fill All Fields!", {
+      icon: ({ theme, type }) => <ShieldAlert />,
+      closeButton: false,
+    });
+    return;
   }
   try {
     const [imageURL, resumeURL] = await writeStorage(id, image, resume);
-    await setDoc(doc(db, "records", id), {
-      ...data,
-      image: imageURL,
-      resume: resumeURL,
-    });
+    await toast.promise(
+      setDoc(doc(db, "records", id), {
+        ...data,
+        image: imageURL,
+        resume: resumeURL,
+      }),
+      {
+        pending: "Saving Record .....",
+        success: {
+          render() {
+            return "Record Added Successfully!";
+          },
+          icon: ({ theme, type }) => <CheckCheck />,
+          closeButton: false,
+        },
+        error: {
+          render() {
+            return "Error Adding Record. Please try again later.";
+          },
+          icon: ({ theme, type }) => <ShieldAlert />,
+          closeButton: false,
+        },
+      }
+    );
 
     window.location.href = "/";
   } catch (error) {
-    console.error("Error Adding : ", error);
+    toast.error("Error Adding Record. Please try again later.", {
+      icon: ({ theme, type }) => <ShieldAlert />,
+      closeButton: false,
+    });
   }
 }
 
