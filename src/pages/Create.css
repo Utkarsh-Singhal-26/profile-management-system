@@ -107,10 +107,11 @@ ul > li:not(MinusCircle) {
   margin-bottom: 40px;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 850px) {
   .Create {
     width: 360px;
     height: auto;
+    margin-top: 20px;
   }
 
   .topBar {
