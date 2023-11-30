@@ -1,6 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import deleteData from "./deleteData";
+import { Link } from "react-router-dom";
 
 async function listData({ onCreateClick }) {
   const querySnapshot = await getDocs(collection(db, "records"));
@@ -11,19 +12,18 @@ async function listData({ onCreateClick }) {
       <td>{doc.data().email}</td>
       <td>
         <button className="hover">
-          <a href={`${doc.data().image}`} target="_blank">
+          <Link to={`${doc.data().image}`} target="_blank">
             View
-          </a>
+          </Link>
         </button>
       </td>
       <td>
-        <button
-          className="hover"
-          onClick={() => onCreateClick(doc.id)}
-        >
+        <button className="hover" onClick={() => onCreateClick(doc.id)}>
           Edit
         </button>
-        <button className="hover" onClick={() => deleteData(doc.id)}>Delete</button>
+        <button className="hover" onClick={() => deleteData(doc.id)}>
+          Delete
+        </button>
       </td>
     </tr>
   ));

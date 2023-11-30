@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { ShieldAlert, CheckCheck } from "lucide-react";
 
 async function writeStorage(id, image, resume) {
+  toast.loading("Uploading Image and Resume .....");
   try {
     const imageRef = ref(storage, `images/${id}`);
     await uploadBytes(imageRef, image);
@@ -14,6 +15,7 @@ async function writeStorage(id, image, resume) {
     await uploadBytes(resumeRef, resume);
     const resumeURL = await getDownloadURL(resumeRef);
 
+    toast.dismiss();
     return [imageURL, resumeURL];
   } catch (error) {
     throw error;
@@ -21,7 +23,7 @@ async function writeStorage(id, image, resume) {
 }
 
 async function writeData(id, data, image, resume) {
-  if (!id || !data || !image || !resume) {
+  if (!id || !data || (image === './upload.png') || !resume) {
     toast.error("Fill All Fields!", {
       icon: ({ theme, type }) => <ShieldAlert />,
       closeButton: false,

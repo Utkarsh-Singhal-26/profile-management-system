@@ -1,4 +1,4 @@
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, getDocs, collection } from "firebase/firestore";
 import { db, storage } from "./firebase";
 import { deleteObject, ref } from "firebase/storage";
 
@@ -10,7 +10,12 @@ async function deleteData(id) {
     if (deleteObject(deleteImgRef) && deleteObject(deleteResumeRef)) {
       await deleteDoc(doc(db, "records", id));
 
-      window.location.reload();
+      const snapshot = await getDocs(collection(db, "records"));
+      if (snapshot.docs.length === 0) {
+        window.location.href = "/";
+      } else {
+        window.location.reload();
+      }
     }
   } catch (error) {
     console.error("Error Deleting: ", error);
