@@ -52,6 +52,7 @@ const View = () => {
             <th>Contact</th>
             <th>Email</th>
             <th>Image</th>
+            <th>Resume</th>
             <th>Options</th>
           </tr>
         </thead>

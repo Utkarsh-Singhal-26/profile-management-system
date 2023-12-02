@@ -20,25 +20,11 @@ button {
   padding: 16px 20px;
   border-radius: 8px;
   border: 2px solid #496f82;
+  color: #496f82;
   background-color: transparent;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-}
-
-button.hover:hover {
-  color: #efffff;
-  background-color: #496f82;
-}
-
-button:disabled {
-  cursor: none;
-  border-color: #496f8272;
-}
-
-button:disabled:hover {
-  background-color: #efffff;
-  color: #b0bbd9;
 }
 
 button > a {
@@ -47,6 +33,44 @@ button > a {
   transition: all 0.2s ease;
 }
 
+button.hover:hover {
+  color: #efffff;
+  background-color: #496f82;
+}
+
 button.hover:hover > a {
   color: #efffff;
+}
+
+button.hover-even {
+  background-color: #496f82;
+  color: #efffff;
+  transition: all 0.2s ease;
+}
+
+button.hover-even > a {
+  text-decoration: none;
+  color: #efffff;
+  transition: all .2s ease;
+}
+
+button.hover-even:hover {
+  background-color: #efffff;
+  color: #496f82;
+}
+
+button.hover-even:hover > a {
+  color: #496f82;
+  background-color: #efffff;
+}
+
+button:disabled {
+  cursor: none;
+  color: #496f8272;
+  border-color: #496f8272;
+}
+
+button:disabled:hover {
+  background-color: #efffff;
+  color: #b0bbd9;
 }

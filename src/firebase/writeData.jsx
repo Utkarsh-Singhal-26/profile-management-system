@@ -22,8 +22,14 @@ async function writeStorage(id, image, resume) {
   }
 }
 
-async function writeData(id, data, image, resume) {
-  if (!id || !data || (image === './upload.png') || !resume) {
+async function writeData(id, data, qualification, image, resume) {
+  if (
+    !id ||
+    !data ||
+    qualification.length === 0 ||
+    image === "./upload.png" ||
+    !resume
+  ) {
     toast.error("Fill All Fields!", {
       icon: ({ theme, type }) => <ShieldAlert />,
       closeButton: false,
@@ -35,6 +41,7 @@ async function writeData(id, data, image, resume) {
     await toast.promise(
       setDoc(doc(db, "records", id), {
         ...data,
+        qualification: qualification,
         image: imageURL,
         resume: resumeURL,
       }),

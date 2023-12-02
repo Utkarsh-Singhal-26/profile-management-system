@@ -11,14 +11,21 @@ async function listData({ onCreateClick }) {
       <td>{doc.data().contact}</td>
       <td>{doc.data().email}</td>
       <td>
-        <button className="hover">
+        <button className="hover-even">
           <Link to={`${doc.data().image}`} target="_blank">
             View
           </Link>
         </button>
       </td>
       <td>
-        <button className="hover" onClick={() => onCreateClick(doc.id)}>
+        <button className="hover">
+          <Link to={`${doc.data().resume}`} target="_blank">
+            View
+          </Link>
+        </button>
+      </td>
+      <td>
+        <button className="hover-even" onClick={() => onCreateClick(doc.id)}>
           Edit
         </button>
         <button className="hover" onClick={() => deleteData(doc.id)}>

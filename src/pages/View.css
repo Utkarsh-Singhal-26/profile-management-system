@@ -1,5 +1,5 @@
 .View {
-  width: 900px;
+  width: auto;
   height: auto;
   background-color: #efffff;
   border-radius: 20px;
@@ -41,11 +41,12 @@ tbody > tr:nth-child(even) {
   background-color: #ddd;
 }
 
-tbody > tr > td:nth-child(5) {
+tbody > tr > td:nth-child(6) {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  padding-inline: 20px;
 }
 
 button {

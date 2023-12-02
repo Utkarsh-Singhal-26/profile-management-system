@@ -148,9 +148,9 @@ const Create = () => {
 
       <div className="bottom">
         <button
-          className="hover"
+          className="hover-even"
           onClick={() =>
-            writeData(id || nanoID, { ...data, qualification }, image, resume)
+            writeData(id || nanoID, data, qualification, image, resume)
           }
         >
           Save Record
