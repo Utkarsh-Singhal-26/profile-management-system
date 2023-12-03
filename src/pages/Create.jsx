@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Create.css";
-import Image from "../components/Image";
-import Qualification from "../components/Qualification";
 import { ChevronLeftCircle } from "lucide-react";
 import { nanoid } from "nanoid";
+import { Link, useParams } from "react-router-dom";
+import Image from "../components/Image";
+import Qualification from "../components/Qualification";
 import writeData from "../firebase/writeData";
-import { useEffect } from "react";
 import readData from "../firebase/readData";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import deleteData from "../firebase/deleteData";
+import { fileName } from "../utils/fileName";
 
 const Create = () => {
   const { id } = useParams();
@@ -20,6 +19,7 @@ const Create = () => {
     contact: 0,
     email: "",
     address: "",
+    resume_name: "",
   });
   const [qualification, setQualification] = useState([]);
   const [image, setImage] = useState("./upload.png");
@@ -63,6 +63,7 @@ const Create = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setResume(file);
+    setData((prev) => ({ ...prev, resume_name: file.name }));
   };
 
   return (
@@ -85,7 +86,7 @@ const Create = () => {
             autoComplete="new-password"
             value={data.name}
             onChange={handleChange}
-            required
+            className="second-column"
           />
 
           <label htmlFor="contact">Contact : </label>
@@ -96,7 +97,7 @@ const Create = () => {
             autoComplete="new-password"
             value={data.contact !== 0 ? data.contact : ""}
             onChange={(e) => handleChange(e, true)}
-            required
+            className="second-column"
           />
 
           <label htmlFor="email">Email : </label>
@@ -107,7 +108,7 @@ const Create = () => {
             autoComplete="new-password"
             value={data.email}
             onChange={handleChange}
-            required
+            className="second-column"
           />
 
           <label htmlFor="address">Address : </label>
@@ -118,27 +119,51 @@ const Create = () => {
             autoComplete="new-password"
             value={data.address}
             onChange={handleChange}
-            required
+            className="second-column"
           />
 
           <label htmlFor="qualification">Qualification : </label>
           <Qualification qual={qualification} setQual={setQualification} />
 
           <label htmlFor="resume">Resume : </label>
-          <div>
-            <label htmlFor="resume" className="file-input">
-              {resume ? "Resume" : "Select File to Upload"}
-            </label>
-            <input
-              type="file"
-              name="resume"
-              id="resume"
-              accept="application/pdf"
-              className="file"
-              onChange={handleFileChange}
-              required
-            />
-          </div>
+
+          {resume ? (
+            <div className="resume-name second-column">
+              {fileName(data.resume_name)}
+              <div className="create-buttons">
+                <label htmlFor="resume" className="resume-input">
+                  Update Resume
+                </label>
+                <input
+                  type="file"
+                  name="resume"
+                  id="resume"
+                  accept="application/pdf"
+                  className="file"
+                  onChange={handleFileChange}
+                />
+                <button className="hover">
+                  <Link to={`${URL.createObjectURL(resume)}`} target="_blank">
+                    View Resume
+                  </Link>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <label htmlFor="resume" className="file-input second-column">
+                Select File to Upload
+              </label>
+              <input
+                type="file"
+                name="resume"
+                id="resume"
+                accept="application/pdf"
+                className="file"
+                onChange={handleFileChange}
+              />
+            </>
+          )}
         </div>
 
         <div className="right">

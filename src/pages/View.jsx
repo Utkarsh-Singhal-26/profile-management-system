@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./View.css";
 import { ChevronLeftCircle } from "lucide-react";
-import listData from "../firebase/listData";
 import { Link, useNavigate } from "react-router-dom";
+import listData from "../firebase/listData";
 
 const View = () => {
   const navigate = useNavigate();

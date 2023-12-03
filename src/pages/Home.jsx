@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import Count from "../firebase/Count";
 import {Link} from 'react-router-dom'
+import Count from "../firebase/Count";
 
 const Home = () => {
   const [size, setSize] = useState(0);

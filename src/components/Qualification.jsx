@@ -31,7 +31,7 @@ const Qualification = ({qual, setQual}) => {
   };
 
   return (
-    <div className="Qualification">
+    <div className="Qualification second-column">
       <ul>
         {qual.map((item, index) => (
           <li key={index} className="item">
