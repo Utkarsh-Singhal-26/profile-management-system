@@ -20,7 +20,7 @@ To run this application locally, follow these steps:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/profile-management-system.git
+    git clone https://github.com/Utkarsh-Singhal-26/profile-management-system.git
     cd profile-management-system
     ```
 
